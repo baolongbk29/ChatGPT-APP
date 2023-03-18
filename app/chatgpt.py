@@ -19,19 +19,19 @@ def main():
     print(output_text)
 
 
-def generate_chat(message: str):
+def generate_chat(prompt: str) -> str:
     
     # Load your API key from an environment variable or secret management service
-    openai.api_key ="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"
+    openai.api_key ="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"
 
     response = openai.ChatCompletion.create(
       model="gpt-3.5-turbo",
       messages=[
-            {"role": "user", "content": message}
+            {"role": "user", "content": prompt},
         ]
     )
 
-    output_text = response["choices"][0]["message"]["content"]
+    output_text : str = response["choices"][0]["message"]["content"]
     
     return output_text
 
