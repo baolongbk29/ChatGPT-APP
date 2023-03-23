@@ -1,7 +1,6 @@
 from fastapi import FastAPI
-from chatgpt import generate_chat
+from hiskit import generate_history
 from fastapi.middleware.cors import CORSMiddleware
-
 
 
 # output_text = generate_chat("Who is best football player?")
@@ -19,11 +18,16 @@ app.add_middleware(
 
 MAX_INPUT_LENGTH = 32
 
+@app.get("/home")
+async def home():
 
-@app.get("/generate_chat")
-async def generate_chat_api(message: str):
+    return {"Message": "Welcome History Kit"}
+
+
+@app.get("/generate_history")
+async def generate_history_api(message: str):
     
-    output_text = generate_chat(message)
-    return {"User Input":message, "output_text": output_text}
+    output_text = generate_history(message)
+    return {"name":message, "history": output_text}
 
 
